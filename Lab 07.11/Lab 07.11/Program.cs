@@ -13,7 +13,8 @@ namespace Lab_07._11
             Paczka przesylka = new Paczka("Marcin", 2);
             Paczka przesylka2 = new Paczka("Podstrup", 16);
             Paczka przesylka3 = new Paczka("Franciszek", 9);
-            Console.WriteLine(przesylka+ " oplata za wysylke tego bydlaka to: " + przesylka.KosztWysylki().ToString());
+            PaczkaPolecona polec = new PaczkaPolecona("nadawca", 16);
+            Console.WriteLine(polec+ " oplata za wysylke tego bydlaka to: " + polec.KosztWysylki().ToString());
             Console.ReadKey();
 
         }
