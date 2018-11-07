@@ -11,7 +11,9 @@ namespace Lab_07._11
         static void Main(string[] args)
         {
             Paczka przesylka = new Paczka("Marcin", 2);
-            Console.WriteLine(przesylka);
+            Paczka przesylka2 = new Paczka("Podstrup", 16);
+            Paczka przesylka3 = new Paczka("Franciszek", 9);
+            Console.WriteLine(przesylka+ " oplata za wysylke tego bydlaka to: " + przesylka.KosztWysylki().ToString());
             Console.ReadKey();
 
         }

@@ -33,8 +33,9 @@ namespace Lab_07._11
         {
             nadawca = "";
             rozmiar = 0;
-            numerPaczki = LiczbaPaczek + "/2018";
             liczbaPaczek++;
+            numerPaczki = LiczbaPaczek + "/2018";
+            
         }
 
         public Paczka(string n, int r):this()
