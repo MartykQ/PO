@@ -15,7 +15,6 @@ namespace Lab_07._11
         public string Nazwa { get => nazwa; set => nazwa = value; }
         public int IloscPaczek { get => iloscPaczek; set => iloscPaczek = value; }
         internal Stack<Paczka> ListaPaczek { get => listaPaczek; set => listaPaczek = value; }
-
         public MagazynLIFO()
         {
             nazwa = "";
