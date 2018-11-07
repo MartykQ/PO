@@ -10,6 +10,10 @@ namespace Lab_07._11
     {
         static void Main(string[] args)
         {
+            Paczka przesylka = new Paczka("Marcin", 2);
+            Console.WriteLine(przesylka);
+            Console.ReadKey();
+
         }
     }
 }

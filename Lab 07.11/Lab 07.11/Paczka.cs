@@ -20,5 +20,37 @@ namespace Lab_07._11
         public string NumerPaczki { get => numerPaczki; set => numerPaczki = LiczbaPaczek+"/2018"; }
         public static int LiczbaPaczek { get => liczbaPaczek; set => liczbaPaczek = value; }
         public static double OplataZaKg { get => oplataZaKg; set => oplataZaKg = value; }
+
+
+        static Paczka()
+        {
+            liczbaPaczek = 0;
+            oplataZaKg = 5;
+
+        }
+
+        public Paczka()
+        {
+            nadawca = "";
+            rozmiar = 0;
+            numerPaczki = LiczbaPaczek + "/2018";
+            liczbaPaczek++;
+        }
+
+        public Paczka(string n, int r):this()
+        {
+            nadawca = n;
+            rozmiar = r;
+        }
+
+        public override string ToString()
+        {
+            return "PACZKA od: " + nadawca + " Numer Paczki: " + numerPaczki + " Rozmiar paczki: " + rozmiar;
+        }
+
+        public virtual double KosztWysylki()
+        {
+            return oplataZaKg * rozmiar;
+        }
     }
 }
