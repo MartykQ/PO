@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMagazynuje.cs" />
+    <Compile Include="MagazynLIFO.cs" />
     <Compile Include="Paczka.cs" />
     <Compile Include="PaczkaPolecona.cs" />
     <Compile Include="Program.cs" />
