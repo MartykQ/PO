@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace Lab_07._11
 {
-    class MagazynLIFO:IMagazynuje
+    class MagazynFIFO : IMagazynuje
     {
         string nazwa;
         int iloscPaczek;
-        Stack<Paczka> listaPaczek;
+        Queue<Paczka> kolejkaPaczek;
 
         public string Nazwa { get => nazwa; set => nazwa = value; }
         public int IloscPaczek { get => iloscPaczek; set => iloscPaczek = value; }
-        internal Stack<Paczka> ListaPaczek { get => listaPaczek; set => listaPaczek = value; }
+        internal Queue<Paczka> KolejkaPaczek { get => kolejkaPaczek; set => kolejkaPaczek = value; }
 
-        public MagazynLIFO()
+        public MagazynFIFO()
         {
-            nazwa = "";
+            kolejkaPaczek = new Queue<Paczka>();
             iloscPaczek = 0;
-            listaPaczek = new Stack<Paczka>();
+            nazwa = "";
         }
-        //konstruktor parametryczny ktroemu podajemy stos jako parametr
-        public MagazynLIFO(string n):this()
+
+        public MagazynFIFO(string n):this()
         {
             nazwa = n;
         }
@@ -31,38 +31,35 @@ namespace Lab_07._11
         public Paczka Pobierz()
         {
             iloscPaczek--;
-            return listaPaczek.Pop();
+            return kolejkaPaczek.Dequeue();
+            
         }
 
         public Paczka PodajBiezacy()
         {
-            return listaPaczek.Peek();
+            return kolejkaPaczek.Peek();
         }
 
         public int PodajIlosc()
         {
-            return listaPaczek.Count();
-            //return iloscPaczek;
+            return kolejkaPaczek.Count();
         }
 
         public void Umiesc(Paczka t)
         {
-            listaPaczek.Push(t);
-            iloscPaczek++;
-
+            kolejkaPaczek.Enqueue(t);
         }
 
         public void Wyczysc()
         {
-            iloscPaczek = 0;
-            listaPaczek.Clear();
+            kolejkaPaczek.Clear();
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("PACZKI W MAGAZYNIE");
-            foreach(Paczka p in listaPaczek)
+            sb.AppendLine("PACZKI W MAGAZYNIE kolejkowym");
+            foreach (Paczka p in kolejkaPaczek)
             {
                 sb.AppendLine(p.NumerPaczki + " NADAWCA: " + p.Nadawca);
             }

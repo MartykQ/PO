@@ -22,7 +22,7 @@ namespace Lab_07._11
         public static double OplataZaKg { get => oplataZaKg; set => oplataZaKg = value; }
 
 
-        static Paczka()
+        static Paczka() //konstruktor statyczny
         {
             liczbaPaczek = 0;
             oplataZaKg = 5;

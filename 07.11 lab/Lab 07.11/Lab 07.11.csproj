@@ -44,7 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMagazynuje.cs" />
+    <Compile Include="IMagazynujeTablice.cs" />
+    <Compile Include="MagazynFIFO.cs" />
     <Compile Include="MagazynLIFO.cs" />
+    <Compile Include="MagazynLinkedList.cs" />
     <Compile Include="Paczka.cs" />
     <Compile Include="PaczkaPolecona.cs" />
     <Compile Include="Program.cs" />
