@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace Lab_07._11
 {
@@ -27,6 +28,9 @@ namespace Lab_07._11
 
                 case 3:
                     ListaWiazana();
+                    break;
+                case 4:
+                    ListaTablicowa();
                     break;
 
 
@@ -110,6 +114,33 @@ namespace Lab_07._11
             nowyMagazyn.UmiescNaPoczatku(polec);
             Console.WriteLine("\n\n\n----------\n"+nowyMagazyn);
             Console.ReadKey();
+
+        }
+
+        static void ListaTablicowa()
+        {
+
+            Paczka przesylka = new Paczka("Marcin", 2);
+            Paczka przesylka2 = new Paczka("Podstrup", 16);
+            Paczka przesylka3 = new Paczka("Franciszek", 9);
+            PaczkaPolecona polec = new PaczkaPolecona("nadawca", 16);
+            PaczkaPolecona polec2 = new PaczkaPolecona("roemk", 2);
+
+
+            MagazynArrayList magazynA = new MagazynArrayList();
+            magazynA.DodajNaKoniec(przesylka);
+            magazynA.DodajNaKoniec(przesylka2);
+            magazynA.DodajNaKoniec(polec);
+            magazynA.DodajNaKoniec(polec2);
+            magazynA.DodajNaKoniec(przesylka3);
+
+            magazynA.UsunNa(5);
+            Console.WriteLine(magazynA);
+            Console.ReadKey();
+
+
+
+
 
         }
     }

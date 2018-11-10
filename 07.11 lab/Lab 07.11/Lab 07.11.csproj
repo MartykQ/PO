@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="IMagazynuje.cs" />
     <Compile Include="IMagazynujeTablice.cs" />
+    <Compile Include="MagazynArrayList.cs" />
     <Compile Include="MagazynFIFO.cs" />
     <Compile Include="MagazynLIFO.cs" />
     <Compile Include="MagazynLinkedList.cs" />
