@@ -22,6 +22,11 @@ namespace Lab_07._11
             iloscPaczek = 0;
             listaPaczek = new Stack<Paczka>();
         }
+
+        public MagazynLIFO(Stack<Paczka> stos):this()
+        {
+            listaPaczek = stos;
+        }
         //konstruktor parametryczny ktroemu podajemy stos jako parametr
         public MagazynLIFO(string n):this()
         {

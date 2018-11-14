@@ -22,7 +22,10 @@ namespace Lab_07._11
             iloscPaczek = 0;
             nazwa = "";
         }
-
+        public MagazynFIFO(Queue<Paczka> kolejka):this()
+        {
+            kolejkaPaczek = kolejka;
+        }
         public MagazynFIFO(string n):this()
         {
             nazwa = n;
