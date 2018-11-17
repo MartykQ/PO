@@ -11,10 +11,7 @@ namespace ConsoleApp5
     class Program
     {
         static void Main(string[] args)
-        {
-         
-
-            
+        {                    
             KierownikZespolu k1 = new KierownikZespolu("Adam", "Kowalski", "1990-07-10", "90070142412", Plcie.M, 5);
             CzlonekZespolu c1 = new CzlonekZespolu("Witold", "Adamski", "1992-10-22", "921066738", Plcie.M, "sekretarz");
             CzlonekZespolu c2 = new CzlonekZespolu("Jan", "Janowski", "1992-03-15", "92031532652", Plcie.M, "programista");
@@ -26,28 +23,26 @@ namespace ConsoleApp5
             zes1.DodajCzlonka(c2);
             zes1.DodajCzlonka(c3);
             zes1.DodajCzlonka(c4);
-            
-            CzlonekZespolu c6 = (CzlonekZespolu)c5.Clone();
-            c6.Imie = "Marcel";
-            DateTime.TryParse("1998-05-08", out c6.dataUrodzenia);
-            c6.Plec = Plcie.M;
-            Console.WriteLine(c6);
-            Console.WriteLine(c5.Plec);
+            zes1.DodajCzlonka(c5);
 
-            Zespol z2 = zes1.DeepCopy();
-            Zespol z3 = (Zespol)zes1.Clone();
-            k1.Imie = "BARANHEHE";
-            c1.Nazwisko = "BARAN";
-            z2.Nazwa = "NOWKA";
-            z2.DodajCzlonka(c5);
-            z3.DodajCzlonka(c1);
-
-            z3.SortujPoPesel();
+            zes1.SortujPoPesel();
+            Zespol zes2 = (Zespol)zes1.DeepCopy();
             Console.WriteLine(zes1);
-            Console.WriteLine(z2);
-            Console.WriteLine(z3);
+
+            Console.WriteLine(zes2);
+            zes2.Kierownik.Pesel = "13";
 
 
+
+            Console.WriteLine(zes1);
+
+            Console.WriteLine(zes2);
+
+            if (zes2.Equals(zes1)) Console.WriteLine("\n\n\n\n\nTE ZESPOLY SA TAKIE SAME");
+            
+
+            
+            
 
             Console.ReadKey();
         }

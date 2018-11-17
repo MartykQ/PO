@@ -32,11 +32,7 @@ namespace ConsoleApp5
 
             set
             {
-
-                
                     PESEL = value;
-                
-                
             }
 
 
@@ -87,11 +83,11 @@ namespace ConsoleApp5
         {
 
             string s = "";
-            s += Imie + " " + Nazwisko + " " + dataUrodzenia.ToShortDateString() + " " + Pesel;
+            s += Imie + " " + Nazwisko + " " + dataUrodzenia.ToShortDateString() + " " + Pesel+" "+Plec;
             return s;
         }
 
-        public string DataPesel()
+        private string DataPesel() //pomocnicza
         {
             string s = dataUrodzenia.ToShortDateString().Substring(8, 2)+
             dataUrodzenia.ToShortDateString().Substring(3, 2) +

@@ -40,7 +40,7 @@ namespace ConsoleApp5
                 }
 
             }
-            return 1;
+            throw new Exception("Obj = null");
         }
 
         public override string ToString()

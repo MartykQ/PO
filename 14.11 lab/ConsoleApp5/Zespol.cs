@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp5
 {
-    class Zespol:ICloneable
+    class Zespol:ICloneable, IEquatable<Zespol>
     {
         private int liczbaCzlonkow;
         private string nazwa;
@@ -78,13 +78,10 @@ namespace ConsoleApp5
         {
             foreach (CzlonekZespolu cz in czlonkowie)
             {
-                if (cz.Equals(c))
+                if (cz.Equals(c)) //komparator
                 {
                     return true;
-                }
-               
-                   
-
+                }                              
             }return false;
             
         }
@@ -137,17 +134,15 @@ namespace ConsoleApp5
             return nowaLista;
         }
 
-        public object Clone()
+        public object Clone() //plytka kopia
         {
-
-
             return this.MemberwiseClone();
         }
 
         public Zespol DeepCopy()
         {
             Zespol kopia = new Zespol();
-            kopia.nazwa = this.nazwa;
+            //kopia.nazwa = this.nazwa;
             kopia.kierownik = (KierownikZespolu)this.kierownik.Clone();
             foreach (CzlonekZespolu cz in czlonkowie)
             {
@@ -170,6 +165,17 @@ namespace ConsoleApp5
             czlonkowie.Sort(new PESELComparator());
 
         }
+
+        public bool Equals(Zespol other)
+        {
+            if (other.Nazwa.Equals(this.Nazwa)
+                && other.Kierownik.Equals(this.Kierownik)
+                && other.liczbaCzlonkow == this.liczbaCzlonkow)
+            {
+                return true;
+            }
+            else return false;
+        }
     }
 
 
@@ -180,7 +186,6 @@ namespace ConsoleApp5
             if(a != null && b!=null)
             {
                 return a.Pesel.CompareTo(b.Pesel);
-
             }
             else 
             return 0;
