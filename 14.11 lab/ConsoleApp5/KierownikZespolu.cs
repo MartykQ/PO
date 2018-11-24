@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp5
 {
-    class KierownikZespolu:Osoba, ICloneable
+    [Serializable]
+
+    public class KierownikZespolu:Osoba, ICloneable
     {
         int Doswiadczenie { get; set; }
         public KierownikZespolu(string i, string n, string d, string p, Plcie pl, int ex) : base(i, n, d, p, pl)
@@ -15,6 +17,7 @@ namespace ConsoleApp5
 
 
         }
+        public KierownikZespolu():base() { }
 
         public override string ToString()
         {

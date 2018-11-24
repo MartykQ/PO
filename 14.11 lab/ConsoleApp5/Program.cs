@@ -25,7 +25,16 @@ namespace ConsoleApp5
             zes1.DodajCzlonka(c4);
             zes1.DodajCzlonka(c5);
 
-            zes1.SortujPoPesel();
+            Console.WriteLine(zes1);
+            Console.WriteLine("=============zapis===========");
+            Zespol.ZapiszJSON("zespol1.json", zes1);
+            Console.WriteLine("============zapisano==========");
+            Console.WriteLine("xxxxxxxxxxxxxxx ODCZYT xxxxxxxxxxxxxxx");
+            Zespol z2 = Zespol.OdczytajJSON("zespol1.json");
+            Console.WriteLine(z2);
+            
+            Console.ReadKey();
+            /*zes1.SortujPoPesel();
             Zespol zes2 = (Zespol)zes1.DeepCopy();
             Console.WriteLine(zes1);
 
@@ -44,7 +53,8 @@ namespace ConsoleApp5
             
             
 
-            Console.ReadKey();
+            Console.ReadKey(); */
+
         }
     }
 }

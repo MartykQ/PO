@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp5
 {
-    class CzlonekZespolu:Osoba, ICloneable, IComparable
+    [Serializable]
+    public class CzlonekZespolu:Osoba, ICloneable, IComparable
     {
 
 
@@ -18,6 +19,9 @@ namespace ConsoleApp5
         }
 
         public string Funkcja { get => funkcja; set => funkcja = value; }
+
+        public CzlonekZespolu() : base() { }
+      
 
         public object Clone()
         {

@@ -4,14 +4,20 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace ConsoleApp5
 {
-    abstract class Osoba: IEquatable<Osoba>
+    [Serializable]
+    [XmlInclude(typeof(CzlonekZespolu))]
+    [XmlInclude(typeof(KierownikZespolu))]
+
+    public abstract class Osoba: IEquatable<Osoba>
     {
         private string imie;
         public string Nazwisko { get; set; }
         public DateTime dataUrodzenia;
+        [XmlAttribute]
         private string PESEL;
         private Plcie plec;
 

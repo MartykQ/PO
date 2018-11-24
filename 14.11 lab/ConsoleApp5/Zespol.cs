@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace ConsoleApp5
 {
-    class Zespol:ICloneable, IEquatable<Zespol>
+    [Serializable]
+    public class Zespol:ICloneable, IEquatable<Zespol>, IZapisywalna
     {
         private int liczbaCzlonkow;
         private string nazwa;
@@ -15,14 +20,15 @@ namespace ConsoleApp5
 
         public int LiczbaCzlonkow { get => liczbaCzlonkow; set => liczbaCzlonkow = value; }
         public string Nazwa { get => nazwa; set => nazwa = value; }
-        internal KierownikZespolu Kierownik { get => kierownik; set => kierownik = value; }
+        public KierownikZespolu Kierownik { get => kierownik; set => kierownik = value; }
+        public List<CzlonekZespolu> Czlonkowie { get => czlonkowie; set => czlonkowie = value; }
 
         public Zespol()
         {
             liczbaCzlonkow = 0;
             nazwa = null;
             kierownik = null;
-            czlonkowie = new List<CzlonekZespolu>();
+            Czlonkowie = new List<CzlonekZespolu>();
         }
 
         public Zespol(string n, KierownikZespolu k) : this() 
@@ -33,7 +39,7 @@ namespace ConsoleApp5
 
         public void DodajCzlonka(CzlonekZespolu c)
         {
-            czlonkowie.Add(c);
+            Czlonkowie.Add(c);
             liczbaCzlonkow++;
         }
 
@@ -43,7 +49,7 @@ namespace ConsoleApp5
             sb.AppendLine("Zespol: " + nazwa);
             sb.AppendLine("Kiero: " + kierownik + "\nCZLONKOWIE: \n");
 
-            foreach(CzlonekZespolu c in czlonkowie)
+            foreach(CzlonekZespolu c in Czlonkowie)
             {
                 sb.AppendLine(c.ToString());
             }
@@ -54,7 +60,7 @@ namespace ConsoleApp5
 
         public bool JestCzlonkiem(string p)
         {
-            foreach(CzlonekZespolu c in czlonkowie)
+            foreach(CzlonekZespolu c in Czlonkowie)
             {
                 if (c.Pesel.Equals(p)) return true;
 
@@ -65,7 +71,7 @@ namespace ConsoleApp5
 
         public bool JestCzlonkiem(string i, string n)
         {
-            foreach (CzlonekZespolu c in czlonkowie)
+            foreach (CzlonekZespolu c in Czlonkowie)
             {
                 if ( c.Imie.Equals(i) && c.Nazwisko.Equals(n)) return true;
 
@@ -76,7 +82,7 @@ namespace ConsoleApp5
 
         public bool JestCzlonkiem(CzlonekZespolu c)
         {
-            foreach (CzlonekZespolu cz in czlonkowie)
+            foreach (CzlonekZespolu cz in Czlonkowie)
             {
                 if (cz.Equals(c)) //komparator
                 {
@@ -88,11 +94,11 @@ namespace ConsoleApp5
 
         public void UsunCzlonka(string p)
         {
-            foreach (CzlonekZespolu c in czlonkowie)
+            foreach (CzlonekZespolu c in Czlonkowie)
             {
                 if (c.Pesel.Equals(p))
                 {
-                    czlonkowie.Remove(c);
+                    Czlonkowie.Remove(c);
                     liczbaCzlonkow--;
                     return;
                 }
@@ -105,11 +111,11 @@ namespace ConsoleApp5
 
         public void UsunCzlonka(string i, string n)
         {
-            foreach (CzlonekZespolu c in czlonkowie)
+            foreach (CzlonekZespolu c in Czlonkowie)
             {
                 if ( c.Imie.Equals(i) && c.Nazwisko.Equals(n))
                 {
-                    czlonkowie.Remove(c);
+                    Czlonkowie.Remove(c);
                     liczbaCzlonkow--;
                     return;
                 }
@@ -123,14 +129,14 @@ namespace ConsoleApp5
         public void UsunWszystkich()
         {
             liczbaCzlonkow = 0;
-            czlonkowie.Clear();
+            Czlonkowie.Clear();
 
         }
 
        public List<CzlonekZespolu> WyszukajFunkcje(string f)
         {
             List<CzlonekZespolu> nowaLista = new List<CzlonekZespolu>();
-            nowaLista = czlonkowie.FindAll(c => c.Funkcja.Equals(f));
+            nowaLista = Czlonkowie.FindAll(c => c.Funkcja.Equals(f));
             return nowaLista;
         }
 
@@ -144,7 +150,7 @@ namespace ConsoleApp5
             Zespol kopia = new Zespol();
             //kopia.nazwa = this.nazwa;
             kopia.kierownik = (KierownikZespolu)this.kierownik.Clone();
-            foreach (CzlonekZespolu cz in czlonkowie)
+            foreach (CzlonekZespolu cz in Czlonkowie)
             {
                 CzlonekZespolu c = (CzlonekZespolu)cz.Clone();
                 kopia.DodajCzlonka(c);
@@ -156,13 +162,13 @@ namespace ConsoleApp5
 
         public void Sortuj()
         {
-            czlonkowie.Sort();
+            Czlonkowie.Sort();
         }
 
         public void SortujPoPesel()
         {
 
-            czlonkowie.Sort(new PESELComparator());
+            Czlonkowie.Sort(new PESELComparator());
 
         }
 
@@ -176,10 +182,94 @@ namespace ConsoleApp5
             }
             else return false;
         }
+
+        public void ZapiszBIN(string nazwa)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream(nazwa, FileMode.Create);
+            bf.Serialize(fs, this);
+            fs.Close();
+        }
+
+        public object OdczytajBIN(string nazwa)
+        {
+            Zespol zespolOdczytany;
+            try
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream fs = new FileStream(nazwa, FileMode.Open);
+                zespolOdczytany = (Zespol)bf.Deserialize(fs);
+                fs.Close();
+                return zespolOdczytany;
+            }
+            catch(FileNotFoundException)
+            {
+                Console.WriteLine("Nie znaleziono pliku");
+                return null;
+            }
+        }
+
+        public static void ZapiszXML(string nazwa, Zespol z)
+        {
+            XmlSerializer sr = new XmlSerializer(typeof(Zespol));
+            StreamWriter sw = new StreamWriter(nazwa);
+            sr.Serialize(sw, z);
+            sw.Close();
+        }
+
+        public static Zespol OdczytajXML(string nazwa)
+        {
+            Zespol odczytanyZespol;
+            try
+            {
+
+                XmlSerializer sr = new XmlSerializer(typeof(Zespol));
+                TextReader tr = new StreamReader(nazwa);
+                odczytanyZespol = (Zespol)sr.Deserialize(tr);
+                tr.Close();
+                return odczytanyZespol;
+            }
+            catch(FieldAccessException)
+            {
+                Console.WriteLine("Nie znaleziono pliku");
+            }
+            return null;
+        }
+
+        public static void ZapiszJSON(string nazwa, Zespol z)
+        {
+            DataContractJsonSerializer jsonSr = new DataContractJsonSerializer(typeof(Zespol));
+            using (var fsstream = File.Create(nazwa))
+            {
+                jsonSr.WriteObject(fsstream, z);
+            }
+        }
+
+        public static Zespol OdczytajJSON(string nazwa)
+        {
+            try
+            {
+                FileStream fsstream = new FileStream(nazwa, FileMode.Open);
+                DataContractJsonSerializer jsonSr = new DataContractJsonSerializer(typeof(Zespol));
+                fsstream.Position = 0;
+                Zespol z = (Zespol)jsonSr.ReadObject(fsstream);
+                fsstream.Close();
+                return z;
+
+
+
+            }
+            catch(FileNotFoundException)
+            {
+                Console.WriteLine("Nie znaleziono pliku");
+
+            }return null;
+        }
+
     }
 
 
-    class PESELComparator : IComparer<CzlonekZespolu>
+    public class PESELComparator : IComparer<CzlonekZespolu>
     {
         public int Compare(CzlonekZespolu a, CzlonekZespolu b)
         {
