@@ -1,0 +1,24 @@
+﻿<Window x:Class="GUICw8.OsobaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUICw8"
+        mc:Ignorable="d"
+        Title="OsobaWindow" Height="577.448" Width="563.986">
+    <Grid>
+        <Label Content="PESEL" HorizontalAlignment="Left" Margin="49,52,0,0" VerticalAlignment="Top" Height="73" Width="170" FontSize="24"/>
+        <Label Content="Imie" HorizontalAlignment="Left" Margin="49,130,0,0" VerticalAlignment="Top" Height="45" Width="145" FontSize="24"/>
+        <Label Content="Nazwisko&#xD;&#xA;" HorizontalAlignment="Left" Margin="49,204,0,0" VerticalAlignment="Top" Height="64" Width="124" FontSize="24"/>
+        <Label Content="Data" HorizontalAlignment="Left" Margin="49,273,0,0" VerticalAlignment="Top" Height="42" Width="145" FontSize="24"/>
+        <Label Content="Plec" HorizontalAlignment="Left" Margin="49,339,0,0" VerticalAlignment="Top" Height="57" Width="279" FontSize="24"/>
+        <TextBox HorizontalAlignment="Left" Height="40" Margin="224,52,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="218"/>
+        <TextBox HorizontalAlignment="Left" Height="45" Margin="224,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="218"/>
+        <TextBox HorizontalAlignment="Left" Height="46" Margin="224,204,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="218"/>
+        <TextBox HorizontalAlignment="Left" Height="46" Margin="224,273,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="218"/>
+        <ComboBox HorizontalAlignment="Left" Margin="224,339,0,0" VerticalAlignment="Top" Width="218" Height="57"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="49,454,0,0" VerticalAlignment="Top" Width="143" Height="66"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="262,454,0,0" VerticalAlignment="Top" Width="180" Height="66"/>
+
+    </Grid>
+</Window>
