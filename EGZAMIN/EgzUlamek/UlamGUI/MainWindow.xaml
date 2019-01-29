@@ -1,0 +1,18 @@
+﻿<Window x:Class="UlamGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UlamGUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBox Name="tekscik1"  HorizontalAlignment="Left" Height="60" Margin="107,62,0,0" TextWrapping="Wrap" Text="wpisz licznik" VerticalAlignment="Top" Width="56"/>
+        <TextBox Name="tekscik2" HorizontalAlignment="Left" Height="55" Margin="107,150,0,0" TextWrapping="Wrap" Text="wpisz mian" VerticalAlignment="Top" Width="56"/>
+        <Label Content="=" HorizontalAlignment="Left" Height="49" Margin="204,101,0,0" VerticalAlignment="Top" Width="55"/>
+        <Label Name="lab1" Content="licznik" HorizontalAlignment="Left" Height="60" Margin="259,62,0,0" VerticalAlignment="Top" Width="58"/>
+        <Label Name="lab2" Content="mianownik" HorizontalAlignment="Left" Height="55" Margin="259,150,0,0" VerticalAlignment="Top" Width="58"/>
+        <Button Content="SKROC" HorizontalAlignment="Left" Margin="86,241,0,0" VerticalAlignment="Top" Width="313" Height="112" Click="Button_Click"/>
+
+    </Grid>
+</Window>
