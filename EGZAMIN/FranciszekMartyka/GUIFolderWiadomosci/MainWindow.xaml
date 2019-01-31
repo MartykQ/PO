@@ -1,0 +1,16 @@
+﻿<Window x:Class="GUIFolderWiadomosci.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUIFolderWiadomosci"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="WIADOMOSC:" HorizontalAlignment="Left" Margin="90,99,0,0" VerticalAlignment="Top" Height="28" Width="101"/>
+        <Label Name="wiadomoscLabel" Content="tutaj pojawi sie wiadomosc" HorizontalAlignment="Left" Margin="208,99,0,0" VerticalAlignment="Top" Height="28" Width="352"/>
+        <Button Content="Pobierz kolejna" HorizontalAlignment="Left" Margin="90,143,0,0" VerticalAlignment="Top" Width="111" Height="29" Click="Button_Click"/>
+        <ListBox Name="listBoks" HorizontalAlignment="Left" Height="115" Margin="90,210,0,0" VerticalAlignment="Top" Width="470"/>
+
+    </Grid>
+</Window>
